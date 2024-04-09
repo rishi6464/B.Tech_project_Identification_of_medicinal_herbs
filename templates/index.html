@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinal Herbs Identification</title>
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #5aae33;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        header img {
+            max-width: 100px;
+            vertical-align: middle;
+        }
+
+        header span {
+            font-weight: 500;
+            font-size: 24px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        .hero_area {
+            background-image: url('../static/images/background1.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 20px 0px 30px 0px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .custom_heading {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .preview_container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            height: 200px; /* Initial height */
+        }
+
+        .input_file {
+            margin-bottom: 20px;
+        }
+
+        .input_file label {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .input_file input[type="file"] {
+            display: none;
+        }
+
+        .input_file .file_input_label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 13px;
+        }
+
+        .input_file .file_input_label:hover {
+            background-color: #0056b3;
+        }
+
+        .preview_image {
+            width: auto; /* Adjusted width */
+            height: 300px; /* Image height after upload */
+            /* object-fit: cover; Maintain aspect ratio */
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .submit_button {
+            text-align: center;
+            display: none;
+        }
+
+        .submit_button button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit_button button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div>
+            <img src="../static/images/logo.png" alt="Logo">
+            <span>Medicinal Plant</span>
+        </div>
+    </header>
+    <!-- End Header Section -->
+
+    <!-- Hero Area -->
+    <div class="hero_area">
+        <h2 class="custom_heading" style="color: black;">Preview</h2>
+    </div>
+    <!-- End Hero Area -->
+
+    <!-- Preview Section -->
+    <section class="preview_container">
+        <br>
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+            <div class="input_file">
+                <label for="imagefile">Upload Image:</label>
+                <input type="file" name="my_image" id="imagefile" accept="image/*">
+                <label class="file_input_label" for="imagefile">Choose File</label>
+            </div>
+            <div class="preview_image_container">
+                <img id="preview" class="preview_image">
+            </div>
+            <div class="submit_button">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+    <!-- End Preview Section -->
+
+    <script>
+        document.getElementById('imagefile').onchange = function (evt) {
+            var tgt = evt.target || window.event.srcElement,
+                files = tgt.files;
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    document.getElementById('preview').src = fr.result;
+                    document.querySelector('.preview_container').style.height = '450px'; // Adjust container height
+                    document.querySelector('.preview_image').style.width = '100%';
+                    document.querySelector('.submit_button').style.display = 'block'; // Show submit button
+                };
+                fr.readAsDataURL(files[0]);
+            }
+        }
+    </script>
+</body>
+
+</html>

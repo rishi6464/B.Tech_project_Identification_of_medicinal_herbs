@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinal Herbs Identification</title>
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: grey(108, 119, 116);
+        }
+
+        header {
+            background-color: #5aae33;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header img {
+            max-width: 100px;
+            vertical-align: middle;
+        }
+
+        header span {
+            font-weight: 500;
+            font-size: 20px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Added border for the form */
+        form {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="sub_page">
+
+    <!-- Header Section -->
+    <header>
+        <div>
+            <img src="../static/images/logo.png" alt="Logo">
+            <span>Medicinal Plant</span>
+        </div>
+    </header>
+    <!-- End Header Section -->
+
+    <!-- Login Section -->
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="uname">Username</label>
+            <input type="text" id="uname" name="uname" required>
+            <label for="pwd">Password</label>
+            <input type="password" id="pwd" name="pwd" required>
+            <button type="button" onclick="login()">Login</button>
+        </form>
+        <div id="error" class="error-message"></div>
+    </div>
+    <!-- End Login Section -->
+
+    <script>
+        function login() {
+            var uname = document.getElementById("uname").value;
+            var pwd = document.getElementById("pwd").value;
+            var errorMessage = document.getElementById("error");
+            if (uname === "admin" && pwd === "admin") {
+                alert("Login Success!");
+                window.location = "{{url_for('index')}}";
+                return false;
+            } else {
+                errorMessage.textContent = "Invalid Credentials!";
+            }
+        }
+    </script>
+</body>
+
+</html>
